@@ -12,6 +12,13 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+<!--
 [![krion's GitHub stats](https://github-readme-stats.vercel.app/api?username=krionbsd&hide_rank=true&theme=buefy&hide_border=true&count_private=true&include_all_commits=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&hide_border=true&layout=compact&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
+-->
 
+
+<p align="center">
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=krionbsd&hide_rank=true&theme=buefy&hide_border=true&count_private=true&include_all_commits=true&show_icons=true" align = "center"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&hide_border=true&layout=compact&theme=buefy&langs_count=8" align = "center"/>
+</p>
