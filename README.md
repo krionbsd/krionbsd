@@ -13,5 +13,5 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 [![krion's GitHub stats](https://github-readme-stats.vercel.app/api?username=krionbsd&hide_rank=true&theme=buefy&count_private=true&include_all_commits=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=220&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
+[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
 
