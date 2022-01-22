@@ -17,6 +17,6 @@ Here are some ideas to get you started:
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=220&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
 -->
 <p align="center">
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=krionbsd&theme=buefy&count_private=true&include_all_commits=true&show_icons=true" align = "center"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=250&theme=buefy&langs_count=8" align = "center"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=krionbsd&theme=buefy&count_private=true&include_all_commits=true&show_icons=true" align = "left"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=250&theme=buefy&langs_count=8" align = "left"/>
 </p>
