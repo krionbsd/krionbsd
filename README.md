@@ -12,7 +12,11 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-<!--[![My GitHub Stats](https://github-readme-stats.vercel.app/api/?username=krionbsd&count_private=true&include_all_commits=true&theme=tokyonight&showicons=true)]()-->
+<!--[![My GitHub Stats](https://github-readme-stats.vercel.app/api/?username=krionbsd&count_private=true&include_all_commits=true&theme=tokyonight&showicons=true)]()
 [![krion's GitHub stats](https://github-readme-stats.vercel.app/api?username=krionbsd&theme=buefy&count_private=true&include_all_commits=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=220&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
-
+-->
+<p align="center">
+<img height="180em" src="https://github-readme-stats.vercel.app/api?username=krionbsd&theme=buefy&count_private=true&include_all_commits=true&show_icons=true" align = "center"/>
+<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&layout=compact&card_width=220&theme=buefy&langs_count=8" align = "center"/>
+</p>
