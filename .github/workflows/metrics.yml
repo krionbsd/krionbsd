@@ -83,10 +83,15 @@ jobs:
             exit 1
           fi
           cp /metrics_renders/github-metrics.svg github-metrics.svg
-          # Dark card for GitHub's dark theme: same render, only the card background is recolored.
-          # This is what metrics' extras_css does: it fills the second, empty <style/> tag.
-          perl -pe 's|<style/>|<style>.background { fill: #0d1117; stroke: #30363d; }</style>| if /<style\/>/ && $seen++' \
-            github-metrics.svg > github-metrics.dark.svg
+          # Dark card for GitHub's dark theme from the same render. The classic template is
+          # transparent, so recolor its text, icons and contribution calendar instead: the CSS
+          # goes in the second, empty <style/> tag (where extras_css would put it) and the
+          # calendar days, which carry inline fills, are mapped to GitHub's dark palette.
+          perl -pe '
+            BEGIN { %day = ("#ebedf0" => "#161b22", "#9be9a8" => "#0e4429", "#40c463" => "#006d32", "#30a14e" => "#26a641", "#216e39" => "#39d353") }
+            s|<style/>|<style>svg { color: #c9d1d9 } h1, h2, h3 { color: #58a6ff } .field svg { fill: #8b949e } footer { color: #8b949e }</style>| if /<style\/>/ && $seen++;
+            s/(<rect class="day"[^>]*?fill=")(#\w+)/$1 . ($day{$2} \/\/ $2)/ge;
+          ' github-metrics.svg > github-metrics.dark.svg
           git add github-metrics.svg github-metrics.dark.svg
           if git diff --cached --quiet; then
             echo "Metrics unchanged"
