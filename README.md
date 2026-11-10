@@ -12,13 +12,22 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
-<!--
-[![krion's GitHub stats](https://github-readme-stats.vercel.app/api?username=krionbsd&hide_rank=true&theme=buefy&hide_border=true&count_private=true&include_all_commits=true&show_icons=true)](https://github.com/anuraghazra/github-readme-stats)
-[![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&hide_border=true&layout=compact&theme=buefy&langs_count=8)](https://github.com/krionbsd/github-readme-stats)
--->
 
+### 📊 GitHub metrics
 
-<p align="left">
-<img height="180em" src="https://github-readme-stats.vercel.app/api?username=krionbsd&&hide_rank=true&theme=default&hide_border=true&count_private=true&include_all_commits=true&show_icons=true" align = "center"/>
-<img height="180em" src="https://github-readme-stats.vercel.app/api/top-langs/?username=krionbsd&hide_border=true&layout=compact&theme=buefy&langs_count=8" align = "center"/>
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./github-metrics.dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="./github-metrics.svg">
+  <img alt="Metrics" src="./github-metrics.svg">
+</picture>
+
+### 🐍 Contribution snake
+
+<picture>
+  <source media="(prefers-color-scheme: dark)"
+          srcset="https://raw.githubusercontent.com/krionbsd/krionbsd/output/github-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)"
+          srcset="https://raw.githubusercontent.com/krionbsd/krionbsd/output/github-snake.svg">
+  <img alt="GitHub contribution snake"
+       src="https://raw.githubusercontent.com/krionbsd/krionbsd/output/github-snake.svg">
+</picture>
