@@ -17,30 +17,28 @@ on:
 permissions:
   contents: write
 
+# Scheduled and push runs both commit to main, so never run two at once.
+concurrency: metrics
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
-    strategy:
-      # Both variants commit to the default branch, so run them one at a time
-      # to avoid two jobs racing on the same push.
-      max-parallel: 1
-      matrix:
-        include:
-          # Light card (default) for GitHub's light theme.
-          - filename: github-metrics.svg
-            extras_css: ""
-          # Dark card for GitHub's dark theme: only the card background is recolored.
-          - filename: github-metrics.dark.svg
-            extras_css: ".background { fill: #0d1117; stroke: #30363d; }"
+    timeout-minutes: 20
     steps:
-      - name: Generate metrics (${{ matrix.filename }})
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      # metrics fetches all owned repositories in one GraphQL query that takes ~10s for
+      # this account, right at GitHub's timeout. When it times out, metrics silently
+      # renders the card without them (0 stargazers, no languages), so render up to
+      # three times and only publish a render that has them.
+      - name: Generate metrics
         uses: lowlighter/metrics@65836723097537a54cd8eb90f61839426b4266b6 # v3.34
-        with:
+        with: &metrics
           # Classic Personal Access Token (scopes: repo, read:org) stored as the METRICS_TOKEN secret.
           token: ${{ secrets.METRICS_TOKEN }}
           user: krionbsd
-          filename: ${{ matrix.filename }}
-          extras_css: ${{ matrix.extras_css }}
+          filename: github-metrics.svg
+          output_action: none
           template: classic
           base: header, activity, community, repositories, metadata
           config_timezone: Europe/Madrid
@@ -56,3 +54,45 @@ jobs:
           plugin_languages_recent_days: 14
           plugin_languages_sections: most-used
           plugin_languages_threshold: 0%
+
+      - name: Check render
+        id: check1
+        continue-on-error: true
+        run: "! grep -qE '^\\s*0 Stargazers\\s*$' /metrics_renders/github-metrics.svg"
+
+      - name: Generate metrics (retry 1)
+        if: steps.check1.outcome == 'failure'
+        uses: lowlighter/metrics@65836723097537a54cd8eb90f61839426b4266b6 # v3.34
+        with: *metrics
+
+      - name: Check render (retry 1)
+        id: check2
+        if: steps.check1.outcome == 'failure'
+        continue-on-error: true
+        run: "! grep -qE '^\\s*0 Stargazers\\s*$' /metrics_renders/github-metrics.svg"
+
+      - name: Generate metrics (retry 2)
+        if: steps.check2.outcome == 'failure'
+        uses: lowlighter/metrics@65836723097537a54cd8eb90f61839426b4266b6 # v3.34
+        with: *metrics
+
+      - name: Publish
+        run: |
+          if grep -qE '^\s*0 Stargazers\s*$' /metrics_renders/github-metrics.svg; then
+            echo "::error::Every render came out without owned repositories, keeping the previous card"
+            exit 1
+          fi
+          cp /metrics_renders/github-metrics.svg github-metrics.svg
+          # Dark card for GitHub's dark theme: same render, only the card background is recolored.
+          # This is what metrics' extras_css does: it fills the second, empty <style/> tag.
+          perl -pe 's|<style/>|<style>.background { fill: #0d1117; stroke: #30363d; }</style>| if /<style\/>/ && $seen++' \
+            github-metrics.svg > github-metrics.dark.svg
+          git add github-metrics.svg github-metrics.dark.svg
+          if git diff --cached --quiet; then
+            echo "Metrics unchanged"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update metrics"
+          git push
